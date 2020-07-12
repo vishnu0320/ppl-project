@@ -1,14 +1,38 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 
 import './App.css';
+
 import Login from './components/login';
 import Register from './components/register';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Welcome from './components/WelcomeContent';
+import Home from './components/Home';
+import SinglePost from './components/SinglePost';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+import Timeline from './components/Timeline';
 
 function App() {
+  const history = useHistory();
+  const location = useLocation();
+  let isLogin;
+
+  useEffect(() => {
+    isLogin = localStorage.getItem('isLogin');
+    console.log('==>', location.pathname);
+    if (isLogin) {
+      (location.pathname === '/' ||
+        location.pathname === '/register' ||
+        location.pathname === 'reset-password' ||
+        location.pathname === 'forgot-password') &&
+        history.push('/home');
+    } else {
+      history.push('/');
+    }
+  }, [isLogin]);
+
   return (
     <>
       <Header />
@@ -17,11 +41,33 @@ function App() {
           <div className='content'>
             <Route exact path='/'>
               <Login />
+              <Welcome />
             </Route>
+
             <Route path='/register'>
               <Register />
+              <Welcome />
             </Route>
-            <Welcome />
+
+            <Route path='/home'>
+              <Home />
+            </Route>
+
+            <Route path='/reset-password'>
+              <ResetPassword />
+            </Route>
+
+            <Route path='/forgot-password'>
+              <ForgotPassword />
+            </Route>
+
+            <Route path='/post'>
+              <SinglePost />
+            </Route>
+
+            <Route path='/timeline'>
+              <Timeline />
+            </Route>
           </div>
         </div>
         <div className='clear' />

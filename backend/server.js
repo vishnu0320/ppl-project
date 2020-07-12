@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+const { findUserByEmail, addUser } = require('./api');
 const userModel = require('./Schema');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,12 +29,29 @@ app.get('/', (req, res) => {
 });
 
 app.post('/addUser', async (req, res) => {
-  console.log('req=> ', req.body);
-  new userModel(req.body).save((err, data) => {
-    if (err) res.send('error');
-    else res.send(data);
-  });
-  // res.end('Register Successfully');
+  try {
+    const result = await findUserByEmail(req.body.email);
+    if (result === 'user not found') {
+      const newUser = await addUser(req.body);
+      console.log('newUser =>', newUser);
+      if (newUser === 'save') res.send('save');
+    } else res.send('Email is already Used!');
+  } catch (err) {
+    res.send('error');
+  }
+});
+
+app.post('/login', async (req, res) => {
+  findUserByEmail(req.body.email)
+    .then((result) => {
+      if (result === 'user not found') res.send('Email is Incurrect!');
+      else if (req.body.password === result.password) {
+        res.send({ message: 'login', user: result });
+      } else res.send('Password is Incurrect!');
+    })
+    .catch((err) => {
+      res.send('error');
+    });
 });
 
 app.get('/getAllUser', (req, res) => {
