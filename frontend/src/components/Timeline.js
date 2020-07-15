@@ -1,28 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Timeline = () => {
   return (
     <div className='content'>
       <div className='content_rgt'>
         <div className='rght_btn'>
-          {' '}
           <span className='rght_btn_icon'>
             <img src='images/btn_iconb.png' alt='up' />
-          </span>{' '}
+          </span>
           <span className='btn_sep'>
             <img src='images/btn_sep.png' alt='sep' />
-          </span>{' '}
-          <a href='#'>Upload Post</a>{' '}
+          </span>
+          <Link to='#'>Upload Post</Link>
         </div>
         <div className='rght_btn'>
-          {' '}
           <span className='rght_btn_icon'>
             <img src='images/btn_icona.png' alt='up' />
-          </span>{' '}
+          </span>
           <span className='btn_sep'>
             <img src='images/btn_sep.png' alt='sep' />
-          </span>{' '}
-          <a href='#'>Invite Friends</a>{' '}
+          </span>
+          <Link to='#'>Invite Friends</Link>
         </div>
         <div className='rght_cate'>
           <div className='rght_cate_hd' id='rght_cat_bg'>
@@ -31,44 +30,44 @@ const Timeline = () => {
           <div className='rght_list'>
             <ul>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_01.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   CATS
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_02.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Dogs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_03.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Birds
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_04.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Rabbit
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_05.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Others
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -124,14 +123,14 @@ const Timeline = () => {
               <div className='profile_pic'>
                 <img src='images/timeline_img1.png' />
                 <div className='profile_text'>
-                  <a href='#'>Change Profile Pic</a>
+                  <Link to='#'>Change Profile Pic</Link>
                 </div>
               </div>
               <div className='profile_info'>
                 <div className='edit_div'>
-                  <a href='#'>
+                  <Link to='#'>
                     Edit <img src='images/timeline_img.png' />
-                  </a>
+                  </Link>
                 </div>
                 <div className='profile_form'>
                   <ul>
@@ -158,21 +157,21 @@ const Timeline = () => {
             <div className='timeline_div2'>
               <ul>
                 <li>
-                  <a href='#' className='active'>
-                    Timeline{' '}
-                  </a>
+                  <Link to='#' className='active'>
+                    Timeline
+                  </Link>
                 </li>
                 <li>
-                  <a href='#'>About </a>
+                  <Link to='#'>About </Link>
                 </li>
                 <li>
-                  <a href='#'>Album</a>
+                  <Link to='#'>Album</Link>
                 </li>
                 <li>
-                  <a href='#'> Pets</a>
+                  <Link to='#'> Pets</Link>
                 </li>
                 <li>
-                  <a href='#'>My Uploads </a>
+                  <Link to='#'>My Uploads </Link>
                 </li>
               </ul>
             </div>
@@ -203,36 +202,36 @@ const Timeline = () => {
               <div className='btm_list'>
                 <ul>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_001.png' alt='share' />
                       </span>
                       Share
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_002.png' alt='share' />
                       </span>
                       Flag
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_003.png' alt='share' />
                       </span>
                       0 Likes
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_004.png' alt='share' />
                       </span>
                       4 Comments
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -264,36 +263,36 @@ const Timeline = () => {
               <div className='btm_list'>
                 <ul>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_001.png' alt='share' />
                       </span>
                       Share
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_002.png' alt='share' />
                       </span>
                       Flag
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_003.png' alt='share' />
                       </span>
                       0 Likes
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_004.png' alt='share' />
                       </span>
                       4 Comments
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

@@ -1,28 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SinglePost = () => {
   return (
     <div className='content'>
       <div className='content_rgt'>
         <div className='rght_btn'>
-          {' '}
           <span className='rght_btn_icon'>
             <img src='images/btn_iconb.png' alt='up' />
-          </span>{' '}
+          </span>
           <span className='btn_sep'>
             <img src='images/btn_sep.png' alt='sep' />
-          </span>{' '}
-          <a href='#'>Upload Post</a>{' '}
+          </span>
+          <Link to='#'>Upload Post</Link>
         </div>
         <div className='rght_btn'>
-          {' '}
           <span className='rght_btn_icon'>
             <img src='images/btn_icona.png' alt='up' />
-          </span>{' '}
+          </span>
           <span className='btn_sep'>
             <img src='images/btn_sep.png' alt='sep' />
-          </span>{' '}
-          <a href='#'>Invite Friends</a>{' '}
+          </span>
+          <Link to='#'>Invite Friends</Link>
         </div>
         <div className='rght_cate'>
           <div className='rght_cate_hd' id='rght_cat_bg'>
@@ -31,44 +30,44 @@ const SinglePost = () => {
           <div className='rght_list'>
             <ul>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_01.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   CATS
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_02.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Dogs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_03.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Birds
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_04.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Rabbit
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='#'>
+                <Link to='#'>
                   <span className='list_icon'>
                     <img src='images/icon_05.png' alt='up' />
-                  </span>{' '}
+                  </span>
                   Others
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -131,36 +130,36 @@ const SinglePost = () => {
               <div className='btm_list'>
                 <ul>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_001.png' alt='share' />
                       </span>
                       Share
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_002.png' alt='share' />
                       </span>
                       Flag
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_003.png' alt='share' />
                       </span>
                       0 Likes
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>
+                    <Link to='#'>
                       <span className='btn_icon'>
                         <img src='images/icon_004.png' alt='share' />
                       </span>
                       4 Comments
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -239,7 +238,7 @@ const SinglePost = () => {
             </li>
           </ul>
           <div className='view_div'>
-            <a href='#'>View more</a>
+            <Link to='#'>View more</Link>
           </div>
         </div>
       </div>

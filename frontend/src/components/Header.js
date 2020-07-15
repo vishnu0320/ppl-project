@@ -24,12 +24,12 @@ const Header = () => {
               <span className='icon-bar' /> <span className='icon-bar' />
               <span className='icon-bar' />
             </button>
-            <a className='brand' href>
+            <Link className='brand' to='/'>
               PPL
-            </a>
+            </Link>
             <div className='pro_info pull-right'>
               <div className='pro_icn'>
-                <img src='images/pic_small.png' />
+                <img alt='imag' src='images/pic_small.png' />
               </div>
               <div className='pro_txt'>
                 Me
@@ -41,46 +41,46 @@ const Header = () => {
                 aria-labelledby='dLabel'
               >
                 <li>
-                  <a tabIndex={-1} href='#'>
+                  <Link tabIndex={-1} to='#'>
                     My Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a tabIndex={-1} href='#'>
+                  <Link tabIndex={-1} to='#'>
                     Message Box
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a tabIndex={-1} onClick={() => onLogout()}>
+                  <Link tabIndex={-1} onClick={() => onLogout()}>
                     Logout
-                  </a>
+                  </Link>
                 </li>
                 <li className='divider' />
                 <li>
-                  <a tabIndex={-1} href='#'>
+                  <Link tabIndex={-1} to='#'>
                     <input type='text' placeholder='search' />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
             <div className='nav-collapse collapse'>
               <ul className='nav'>
                 <li className='active'>
-                  <a href>Home</a>
+                  <Link to>Home</Link>
                 </li>
                 {isLogin && (
                   <>
                     <li className>
-                      <a href>E-Coupons</a>
+                      <Link to>E-Coupons</Link>
                     </li>
                     <li className>
-                      <a href>E-Brands</a>
+                      <Link to>E-Brands</Link>
                     </li>
                     <li className>
-                      <a href>Resuse Market</a>
+                      <Link to>Resuse Market</Link>
                     </li>
                     <li className>
-                      <a href>Lost and Found</a>
+                      <Link to>Lost and Found</Link>
                     </li>
                   </>
                 )}
@@ -93,7 +93,7 @@ const Header = () => {
         <div className='header_lft'>
           <div className='logo'>
             <Link to='/'>
-              <img src='images/logo.png' />
+              <img alt='imag' src='images/logo.png' />
             </Link>
           </div>
           <div className='navigatn'>
@@ -125,15 +125,15 @@ const Header = () => {
         {isLogin ? (
           <div className='header_rgt'>
             {/* <div className='flag_div'>
-            <img src='images/flag.png' />
+            <img alt='imag' src='images/flag.png' />
           </div> */}
             <input type='text' placeholder='Search' className='txt_box' />
             {/* <div className='msg_box'>
-              <a href='#'> <span className='msg_count'>100</span> </a>
+              <Link to='#'> <span className='msg_count'>100</span> </Link>
             </div> */}
             <div className='pro_info pull-right'>
               <div className='pro_icn'>
-                <img src='images/pic_small.png' />
+                <img alt='imag' src='images/pic_small.png' />
               </div>
               <div className='pro_txt'>
                 Me
@@ -145,25 +145,25 @@ const Header = () => {
                 aria-labelledby='dLabel'
               >
                 <li>
-                  <a tabIndex={-1} href='#'>
+                  <Link tabIndex={-1} to='#'>
                     My Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a tabIndex={-1} href='#'>
+                  <Link tabIndex={-1} to='#'>
                     Message Box
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a tabIndex={-1} onClick={() => onLogout()}>
+                  <Link tabIndex={-1} onClick={() => onLogout()}>
                     Logout
-                  </a>
+                  </Link>
                 </li>
                 <li className='divider' />
                 <li>
-                  <a tabIndex={-1} href='#'>
+                  <Link tabIndex={-1} to='#'>
                     <input type='text' placeholder='search' />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

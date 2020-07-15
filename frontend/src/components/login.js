@@ -88,7 +88,7 @@ const Login = () => {
               defaultValue='Log In'
               onClick={() => onSubmit()}
             />
-            <a href>Forgot Password</a>
+            <Link to=''>Forgot Password</Link>
           </li>
         </ul>
         <div className='addtnal_acnt'>

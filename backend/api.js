@@ -1,7 +1,8 @@
-const userModel = require('./Schema');
+const userModel = require('./Schema/UserSchema');
+const postModel = require('./Schema/PostSchema');
 
 module.exports = {
-  findUserByEmail: async (email) => {
+  findUserByEmail: (email) => {
     return new Promise((resolve, reject) => {
       userModel.findOne({ email: email }, (err, res) => {
         if (err) reject(err);
@@ -15,6 +16,15 @@ module.exports = {
       new userModel(data).save((err, data) => {
         if (err) reject('error');
         else resolve('save');
+      });
+    });
+  },
+  addPost: (data) => {
+    return new Promise((resolve, reject) => {
+      console.log('api', data);
+      new postModel(data).save((err, data) => {
+        if (err) reject('error');
+        else resolve({ msg: 'save', post: data });
       });
     });
   },

@@ -3,13 +3,15 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 
-const { findUserByEmail, addUser } = require('./api');
-const userModel = require('./Schema');
+const userModel = require('./Schema/UserSchema');
+const { findUserByEmail, addUser, addPost } = require('./api');
+
+const upload = multer({ dest: 'uploads/' });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use(cors());
 
 mongoose.connect(
@@ -26,6 +28,18 @@ mongoose.connect(
 
 app.get('/', (req, res) => {
   res.end('Welcome');
+});
+
+app.post('/uploadPost', upload.single('picture'), async (req, res) => {
+  try {
+    const result = await addPost({ ...req.body, picture: req.file.filename });
+    console.log(result);
+    if (result.msg === 'save') {
+      res.send(result);
+    }
+  } catch (err) {
+    res.send('error');
+  }
 });
 
 app.post('/addUser', async (req, res) => {

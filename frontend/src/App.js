@@ -13,6 +13,7 @@ import SinglePost from './components/SinglePost';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import Timeline from './components/Timeline';
+import PostUpload from './components/PostUpload';
 
 function App() {
   const history = useHistory();
@@ -67,6 +68,9 @@ function App() {
 
             <Route path='/timeline'>
               <Timeline />
+            </Route>
+            <Route path='/upload-post'>
+              <PostUpload />
             </Route>
           </div>
         </div>
