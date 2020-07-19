@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import PostComponent from './PostComponent';
 
 const Home = () => {
+  const [allPost, setAllPost] = useState([]);
+
+  useEffect(() => {
+    console.log('calling..');
+    axios
+      .get('http://localhost:9999/getAllPost')
+      .then((res) => setAllPost(res.data));
+  }, []);
+
   return (
     <div className='content'>
       <div className='content_rgt'>
@@ -109,7 +121,7 @@ const Home = () => {
       </div>
       <div className='content_lft'>
         <div className='contnt_1'>
-          <div className='list_1'>
+          {/* <div className='list_1'>
             <ul>
               <li>
                 <input type='checkbox' className='chk_bx' />
@@ -120,7 +132,7 @@ const Home = () => {
                 Flaged
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className='post_div'>
             <div className='post_list'>
               <ul>
@@ -166,170 +178,18 @@ const Home = () => {
                 </li>
               </ul>
             </div>
-            <div className='post_txt'>4 New Post Updates</div>
+            {/* <div className='post_txt'>4 New Post Updates</div> */}
           </div>
         </div>
-        <div className='contnt_2'>
-          <div className='div_a'>
-            <div className='div_title'>
-              User Interface PSD Source files Web Designing for web
-            </div>
-            <div className='btm_rgt'>
-              <div className='btm_arc'>Cats</div>
-            </div>
-            <div className='div_top'>
-              <div className='div_top_lft'>
-                <img src='images/img_6.png' />
-                Steave Waugh
-              </div>
-              <div className='div_top_rgt'>
-                <span className='span_date'>02 Jan 2014</span>
-                <span className='span_time'>11:15am</span>
-              </div>
-            </div>
-            <div className='div_image'>
-              <img src='images/lft_img.png' alt='pet' />
-            </div>
-            <div className='div_btm'>
-              <div className='btm_list'>
-                <ul>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_001.png' alt='share' />
-                      </span>
-                      Share
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_002.png' alt='share' />
-                      </span>
-                      Flag
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_004.png' alt='share' />
-                      </span>
-                      4 Comments
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_003.png' alt='share' />
-                      </span>
-                      Likes
-                    </Link>
-                  </li>
-                  <div className='like_count' style={{ marginRight: '10px' }}>
-                    <span className='lft_cnt' />
-                    <span className='mid_cnt'>10</span>
-                    <span className='rit_cnt' />
-                  </div>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_003.png' alt='share' />
-                      </span>
-                      Unlike
-                    </Link>
-                  </li>
-                  <div className='like_count'>
-                    <span className='lft_cnt' />
-                    <span className='mid_cnt'>4</span>
-                    <span className='rit_cnt' />
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='contnt_2'>
-          <div className='div_a'>
-            <div className='div_title'>
-              User Interface PSD Source files Web Designing for web
-            </div>
-            <div className='btm_rgt'>
-              <div className='btm_arc'>Dogs</div>
-            </div>
-            <div className='div_top'>
-              <div className='div_top_lft'>
-                <img src='images/img_6.png' />
-                Steave Waugh
-              </div>
-              <div className='div_top_rgt'>
-                <span className='span_date'>02 Jan 2014</span>
-                <span className='span_time'>11:15am</span>
-              </div>
-            </div>
-            <div className='div_image'>
-              <img src='images/lft_img1.png' alt='pet' />
-            </div>
-            <div className='div_btm'>
-              <div className='btm_list'>
-                <ul>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_001.png' alt='share' />
-                      </span>
-                      Share
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_002.png' alt='share' />
-                      </span>
-                      Flag
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_004.png' alt='share' />
-                      </span>
-                      4 Comments
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_003.png' alt='share' />
-                      </span>
-                      Likes
-                    </Link>
-                  </li>
-                  <div className='like_count' style={{ marginRight: '10px' }}>
-                    <span className='lft_cnt' />
-                    <span className='mid_cnt'>10</span>
-                    <span className='rit_cnt' />
-                  </div>
-                  <li>
-                    <Link to='#'>
-                      <span className='btn_icon'>
-                        <img src='images/icon_003.png' alt='share' />
-                      </span>
-                      Unlike
-                    </Link>
-                  </li>
-                  <div className='like_count'>
-                    <span className='lft_cnt' />
-                    <span className='mid_cnt'>4</span>
-                    <span className='rit_cnt' />
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* <PostComponent /> */}
+        {allPost?.length > 0 ? (
+          allPost.map((element) => <PostComponent {...element} />)
+        ) : (
+          <h1>No Post</h1>
+        )}
       </div>
     </div>
   );
 };
-
+//  title={element.title} picture={element.picture}
 export default Home;

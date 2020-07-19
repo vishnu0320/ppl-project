@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
+
+import Popup from './Popup';
 
 const Header = () => {
   const isLogin = localStorage.getItem('isLogin');
   const location = useLocation();
   const history = useHistory();
+  const [showPopup, setShowPopup] = useState(false);
 
   const onLogout = () => {
     localStorage.clear();
     history.push('/');
   };
+
+  const handleTab = () => {
+    setShowPopup(true);
+  };
+
   return (
     <div>
+      {showPopup && (
+        <Popup
+          onClose={() => setShowPopup(false)}
+          header={'Alert!'}
+          content={'Under Maintenance'}
+        />
+      )}
       <div className='navbar navbar-inverse navbar-fixed-top'>
         <div className='navbar-inner'>
           <div className='container'>
@@ -24,7 +39,7 @@ const Header = () => {
               <span className='icon-bar' /> <span className='icon-bar' />
               <span className='icon-bar' />
             </button>
-            <Link className='brand' to='/'>
+            <Link className='brand' to='/home'>
               PPL
             </Link>
             <div className='pro_info pull-right'>
@@ -66,21 +81,29 @@ const Header = () => {
             <div className='nav-collapse collapse'>
               <ul className='nav'>
                 <li className='active'>
-                  <Link to>Home</Link>
+                  <Link to='/home'>Home</Link>
                 </li>
                 {isLogin && (
                   <>
                     <li className>
-                      <Link to>E-Coupons</Link>
+                      <Link to='#' onClick={handleTab}>
+                        E-Coupons
+                      </Link>
                     </li>
                     <li className>
-                      <Link to>E-Brands</Link>
+                      <Link to='#' onClick={handleTab}>
+                        E-Brands
+                      </Link>
                     </li>
                     <li className>
-                      <Link to>Resuse Market</Link>
+                      <Link to='#' onClick={handleTab}>
+                        Resuse Market
+                      </Link>
                     </li>
                     <li className>
-                      <Link to>Lost and Found</Link>
+                      <Link to='#' onClick={handleTab}>
+                        Lost and Found
+                      </Link>
                     </li>
                   </>
                 )}
@@ -92,31 +115,39 @@ const Header = () => {
       <div className='header'>
         <div className='header_lft'>
           <div className='logo'>
-            <Link to='/'>
+            <Link to='/home'>
               <img alt='imag' src='images/logo.png' />
             </Link>
           </div>
           <div className='navigatn'>
             <ul>
               <li>
-                <Link to='/' className='active'>
+                <Link to='/home' className='active'>
                   Home
                 </Link>
               </li>
               {isLogin && (
                 <>
                   <li>
-                    <Link to='#'> E-Coupons </Link>
+                    <Link to='#' onClick={handleTab}>
+                      E-Coupons
+                    </Link>
                   </li>
                   <li>
-                    <Link to='#'>E-Brands </Link>
+                    <Link to='#' onClick={handleTab}>
+                      E-Brands
+                    </Link>
                   </li>
                   <li>
-                    <Link to='#'> Resuse Market </Link>
+                    <Link to='#' onClick={handleTab}>
+                      Resuse Market
+                    </Link>
                   </li>
                   <li>
-                    <Link to='#'> Lost and Found</Link>
-                  </li>{' '}
+                    <Link to='#' onClick={handleTab}>
+                      Lost and Found
+                    </Link>
+                  </li>
                 </>
               )}
             </ul>

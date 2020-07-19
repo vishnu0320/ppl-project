@@ -4,11 +4,21 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-
+const path = require('path');
+app.use(express.static('uploads'));
+// app.use('/static', express.static(path.join(__dirname, 'uploads')));
 const userModel = require('./Schema/UserSchema');
 const { findUserByEmail, addUser, addPost } = require('./api');
+const postModel = require('./Schema/PostSchema');
 
-const upload = multer({ dest: 'uploads/' });
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: function (req, file, cb) {
+    cb(null, 'Image' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -70,6 +80,14 @@ app.post('/login', async (req, res) => {
 
 app.get('/getAllUser', (req, res) => {
   userModel.find({}, (err, data) => {
+    if (err) res.send('error');
+    else res.send(data);
+  });
+});
+
+app.get('/getAllPost', (req, res) => {
+  console.log('called');
+  postModel.find({}, (err, data) => {
     if (err) res.send('error');
     else res.send(data);
   });

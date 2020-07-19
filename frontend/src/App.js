@@ -62,9 +62,9 @@ function App() {
               <ForgotPassword />
             </Route>
 
-            <Route path='/post'>
-              <SinglePost />
-            </Route>
+            <Route path='/post/:id' component={SinglePost} />
+            {/* <SinglePost /> */}
+            {/* </Route> */}
 
             <Route path='/timeline'>
               <Timeline />
