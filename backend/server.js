@@ -78,6 +78,10 @@ app.post('/login', async (req, res) => {
     });
 });
 
+app.post('/addComment', (req, res) => {
+  console.log('=========', req.body);
+});
+
 app.get('/getAllUser', (req, res) => {
   userModel.find({}, (err, data) => {
     if (err) res.send('error');

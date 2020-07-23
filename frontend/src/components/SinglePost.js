@@ -79,7 +79,7 @@ const SinglePost = (props) => {
                 ))
               : ''}
             <li>
-              <AddComment />
+              <AddComment postId={post._id} />
             </li>
           </ul>
           {/* <div className='view_div'>

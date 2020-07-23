@@ -8,9 +8,7 @@ var postSchema = new Schema({
   userID: String,
   time: { type: Date, default: Date.now },
   like: [String],
-  comments: [
-    { body: String, date: { type: Date, default: Date.now }, userID: String },
-  ],
+  comments: [{ body: String, userID: String }],
 });
 
 const postModel = mongoose.model('Post', postSchema);

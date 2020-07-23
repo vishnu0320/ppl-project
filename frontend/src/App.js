@@ -54,21 +54,20 @@ function App() {
               <Home />
             </Route>
 
-            <Route path='/reset-password'>
+            {/* <Route path='/reset-password'>
               <ResetPassword />
             </Route>
 
             <Route path='/forgot-password'>
               <ForgotPassword />
-            </Route>
+            </Route> */}
 
             <Route path='/post/:id' component={SinglePost} />
-            {/* <SinglePost /> */}
-            {/* </Route> */}
 
-            <Route path='/timeline'>
+            {/* <Route path='/timeline'>
               <Timeline />
-            </Route>
+            </Route> */}
+
             <Route path='/upload-post'>
               <PostUpload />
             </Route>
