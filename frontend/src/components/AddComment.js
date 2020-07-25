@@ -4,14 +4,19 @@ import Axios from 'axios';
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const user = localStorage.getItem('isLogin');
     const userData = JSON.parse(user);
-    Axios.post('http://localhost:9999/addComment', {
-      postId: props.postId,
-      body: comment,
-      userID: userData._id,
-    }).then((res) => console.log('<><<<<<<<<<<<<<<>>>>', res));
+    const fullname = userData.firstname + ' ' + userData.lastname;
+    if (comment !== '') {
+      Axios.post('http://localhost:9999/addComment', {
+        postId: props.postId,
+        body: comment,
+        userID: fullname,
+      }).then((res) => setComment(''));
+      props.setIsComment(true);
+    }
   };
 
   return (
@@ -25,7 +30,7 @@ const AddComment = (props) => {
       />
       <input
         type='submit'
-        onClick={handleSubmit}
+        onClick={(e) => handleSubmit(e)}
         className='sub_bttn1'
         defaultValue='Submit Comment'
       />

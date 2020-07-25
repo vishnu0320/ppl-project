@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const PostComponent = (props) => {
-  console.log('=>', props);
   const [title, setTitle] = useState(props.title);
-  const [user, setUser] = useState('User');
+  const [user, setUser] = useState(
+    props?.user?.fullname || 'User Name not found'
+  );
   const [category, setCategory] = useState(props.tag || 'cat');
   const [time, setTime] = useState(props.time);
   const [picture, setpicture] = useState(
@@ -60,7 +61,12 @@ const PostComponent = (props) => {
                 </Link>
               </li>
               <li>
-                <Link to='#'>
+                <Link
+                  to={{
+                    pathname: `/post/${props._id}`,
+                    state: { post: props },
+                  }}
+                >
                   <span className='btn_icon'>
                     <img src='images/icon_004.png' alt='share' />
                   </span>

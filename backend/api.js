@@ -30,13 +30,15 @@ module.exports = {
   },
   addComment: (data) => {
     return new Promise((resolve, reject) => {
-      console.log('api', data);
       //find bost and update
-      //----------- update
-      new postModel.findOne({ _id: data.postId }, (err, data) => {
-        if (err) reject('error');
-        else resolve({ msg: 'save', post: data });
-      });
+      postModel.findOneAndUpdate(
+        { _id: data.postId },
+        { $push: { comments: { body: data.body, userID: data.userID } } },
+        (err, data) => {
+          if (err) reject('error');
+          else resolve({ msg: 'save', post: data });
+        }
+      );
     });
   },
 };

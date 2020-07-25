@@ -6,9 +6,11 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 app.use(express.static('uploads'));
+
+mongoose.set('useFindAndModify', false);
 // app.use('/static', express.static(path.join(__dirname, 'uploads')));
 const userModel = require('./Schema/UserSchema');
-const { findUserByEmail, addUser, addPost } = require('./api');
+const { findUserByEmail, addUser, addPost, addComment } = require('./api');
 const postModel = require('./Schema/PostSchema');
 
 const storage = multer.diskStorage({
@@ -41,8 +43,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/uploadPost', upload.single('picture'), async (req, res) => {
+  console.log('backend =>', req.body);
+  const postData = {};
+  postData.title = req.body.title;
+  postData.tag = req.body.tag;
+  postData.user = {};
+  postData.user.fullname = req.body.userFullname;
+  postData.user.email = req.body.userEmail;
   try {
-    const result = await addPost({ ...req.body, picture: req.file.filename });
+    const result = await addPost({ ...postData, picture: req.file.filename });
     console.log(result);
     if (result.msg === 'save') {
       res.send(result);
@@ -79,7 +88,16 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/addComment', (req, res) => {
-  console.log('=========', req.body);
+  addComment(req.body)
+    .then((result) => {
+      if (result.msg === 'save') {
+        console.log('save', result.post);
+        res.send(result.post);
+      }
+    })
+    .catch((err) => {
+      res.send('error');
+    });
 });
 
 app.get('/getAllUser', (req, res) => {
@@ -90,8 +108,15 @@ app.get('/getAllUser', (req, res) => {
 });
 
 app.get('/getAllPost', (req, res) => {
-  console.log('called');
   postModel.find({}, (err, data) => {
+    if (err) res.send('error');
+    else res.send(data);
+  });
+});
+
+app.post('/getPostById', (req, res) => {
+  console.log('called getpost by id =>', req.body);
+  postModel.findOne({ _id: req.body.id }, (err, data) => {
     if (err) res.send('error');
     else res.send(data);
   });

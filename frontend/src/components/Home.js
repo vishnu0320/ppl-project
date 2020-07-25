@@ -6,9 +6,9 @@ import PostComponent from './PostComponent';
 
 const Home = () => {
   const [allPost, setAllPost] = useState([]);
+  const [showFeatured, setShowFeatured] = useState(false);
 
   useEffect(() => {
-    console.log('calling..');
     axios
       .get('http://localhost:9999/getAllPost')
       .then((res) => setAllPost(res.data));
@@ -86,37 +86,44 @@ const Home = () => {
         </div>
         <div className='rght_cate'>
           <div className='rght_cate_hd' id='opn_cat_bg'>
-            Featured
-          </div>
-          <div className='sub_dwn'>
-            <div className='feat_sec'>
-              <div className='feat_sec_img'>
-                <img src='images/feat_img1.png' alt='image' />
-              </div>
-              <div className='feat_txt'>Lorem Ipusum Text</div>
-              <div className='btm_rgt'>
-                <div className='btm_arc'>Cats</div>
-              </div>
-            </div>
-            <div className='feat_sec'>
-              <div className='feat_sec_img'>
-                <img src='images/feat_img2.png' alt='image' />
-              </div>
-              <div className='feat_txt'>Lorem Ipusum Text</div>
-              <div className='btm_rgt'>
-                <div className='btm_arc'>Dogs</div>
-              </div>
-            </div>
-            <div className='feat_sec'>
-              <div className='feat_sec_img'>
-                <img src='images/feat_img3.png' alt='image' />
-              </div>
-              <div className='feat_txt'>Lorem Ipusum Text</div>
-              <div className='btm_rgt'>
-                <div className='btm_arc'>Rabbits</div>
-              </div>
+            <div>Featured</div>
+            <div onClick={() => setShowFeatured(!showFeatured)}>
+              {showFeatured ? '+' : '--'}
             </div>
           </div>
+          {!showFeatured ? (
+            <div className='sub_dwn'>
+              <div className='feat_sec'>
+                <div className='feat_sec_img'>
+                  <img src='images/feat_img1.png' alt='image' />
+                </div>
+                <div className='feat_txt'>Lorem Ipusum Text</div>
+                <div className='btm_rgt'>
+                  <div className='btm_arc'>Cats</div>
+                </div>
+              </div>
+              <div className='feat_sec'>
+                <div className='feat_sec_img'>
+                  <img src='images/feat_img2.png' alt='image' />
+                </div>
+                <div className='feat_txt'>Lorem Ipusum Text</div>
+                <div className='btm_rgt'>
+                  <div className='btm_arc'>Dogs</div>
+                </div>
+              </div>
+              <div className='feat_sec'>
+                <div className='feat_sec_img'>
+                  <img src='images/feat_img3.png' alt='image' />
+                </div>
+                <div className='feat_txt'>Lorem Ipusum Text</div>
+                <div className='btm_rgt'>
+                  <div className='btm_arc'>Rabbits</div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div className='content_lft'>
@@ -181,7 +188,6 @@ const Home = () => {
             {/* <div className='post_txt'>4 New Post Updates</div> */}
           </div>
         </div>
-        {/* <PostComponent /> */}
         {allPost?.length > 0 ? (
           allPost.map((element) => <PostComponent {...element} />)
         ) : (
@@ -191,5 +197,4 @@ const Home = () => {
     </div>
   );
 };
-//  title={element.title} picture={element.picture}
 export default Home;

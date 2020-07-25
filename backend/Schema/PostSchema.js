@@ -5,7 +5,10 @@ var postSchema = new Schema({
   title: String,
   picture: String,
   tag: String,
-  userID: String,
+  user: {
+    fullname: String,
+    email: String,
+  },
   time: { type: Date, default: Date.now },
   like: [String],
   comments: [{ body: String, userID: String }],

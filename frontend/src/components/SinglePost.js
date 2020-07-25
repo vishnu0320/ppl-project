@@ -1,33 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AddComment from './AddComment';
 import Comment from './CommentComponent';
+import Axios from 'axios';
 
 const SinglePost = (props) => {
   const { post } = props.location.state;
+  const [PostData, setPostData] = useState({});
+  const [isComment, setIsComment] = useState(false);
+
+  useEffect(() => {
+    const { id } = props.match.params;
+    Axios.post('http://localhost:9999/getPostById', {
+      id: id,
+    }).then((res) => setPostData(res.data));
+    setIsComment(false);
+  }, [isComment]);
 
   return (
     <div className='content'>
       <div className='content_lft'>
         <div className='contnt_2'>
           <div className='div_a'>
-            <div className='div_title'>{post.title}</div>
+            <div className='div_title'>{PostData.title}</div>
             <div className='btm_rgt'>
-              <div className='btm_arc'>{post.tag}</div>
+              <div className='btm_arc'>{PostData.tag || 'Cat'}</div>
             </div>
             <div className='div_top'>
               <div className='div_top_lft'>
                 <img src='/images/img_6.png' />
-                Steave Waugh
+                {PostData.user?.fullname || 'User'}
               </div>
               <div className='div_top_rgt'>
-                <span className='span_date'>{post.time}</span>
+                <span className='span_date'>{PostData.time}</span>
                 {/* <span className='span_time'>11:15am</span> */}
               </div>
             </div>
             <div className='div_image'>
-              <img src={`http://localhost:9999/${post.picture}`} alt='pet' />
+              <img
+                src={`http://localhost:9999/${PostData.picture}`}
+                alt='pet'
+              />
             </div>
             <div className='div_btm'>
               <div className='btm_list'>
@@ -53,7 +67,7 @@ const SinglePost = (props) => {
                       <span className='btn_icon'>
                         <img src='/images/icon_003.png' alt='share' />
                       </span>
-                      {post.like.length} Likes
+                      {PostData.like?.length} Likes
                     </Link>
                   </li>
                   <li>
@@ -61,7 +75,7 @@ const SinglePost = (props) => {
                       <span className='btn_icon'>
                         <img src='/images/icon_004.png' alt='share' />
                       </span>
-                      {post.comments.length} Comments
+                      {PostData.comments?.length} Comments
                     </Link>
                   </li>
                 </ul>
@@ -71,15 +85,15 @@ const SinglePost = (props) => {
         </div>
         <div className='contnt_3'>
           <ul>
-            {post.comments.length > 0
-              ? post.comments.map((comment) => (
+            {PostData.comments?.length > 0
+              ? PostData.comments.map((comment) => (
                   <li>
-                    <Comment />
+                    <Comment body={comment.body} username={comment.userID} />
                   </li>
                 ))
               : ''}
             <li>
-              <AddComment postId={post._id} />
+              <AddComment postId={PostData._id} setIsComment={setIsComment} />
             </li>
           </ul>
           {/* <div className='view_div'>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
-import { Link, useHistory } from 'react-router-dom';
 
 const Login = () => {
   const history = useHistory();
@@ -11,17 +10,23 @@ const Login = () => {
   const [titleError, settitleError] = useState('');
 
   const handleSubmit = (e) => {
-    // e.perventDefault();
     const formdata = new FormData();
     if (title === '') {
       settitleError('Title is required');
     } else {
+      const user = JSON.parse(localStorage.getItem('isLogin'));
+      const fullname = user.firstname + ' ' + user.lastname;
+
       formdata.append('title', title);
       formdata.append('tag', tag);
       formdata.append('picture', picture);
+      formdata.append('userEmail', user.email);
+      formdata.append('userFullname', fullname);
+
       const header = {
         'Content-Type': 'multipart/form-data',
       };
+
       axios
         .post(`http://localhost:9999/uploadPost`, formdata, header)
         .then((res) => {
@@ -35,7 +40,6 @@ const Login = () => {
     <div className='content_lft'>
       <div className='login_sec'>
         <h1>Post Upload</h1>
-        {/* <form enctype='multipart/form-data'> */}
         <ul>
           <li>
             <span style={{ color: 'red', height: '20px' }}>
@@ -86,7 +90,6 @@ const Login = () => {
             />
           </li>
         </ul>
-        {/* </form> */}
       </div>
     </div>
   );

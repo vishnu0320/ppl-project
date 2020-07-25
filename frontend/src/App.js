@@ -22,7 +22,6 @@ function App() {
 
   useEffect(() => {
     isLogin = localStorage.getItem('isLogin');
-    console.log('==>', location.pathname);
     if (isLogin) {
       (location.pathname === '/' ||
         location.pathname === '/register' ||

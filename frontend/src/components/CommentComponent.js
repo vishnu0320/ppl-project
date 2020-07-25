@@ -1,19 +1,15 @@
 import React from 'react';
 
-const Commment = () => {
+const Commment = (props) => {
   return (
     <>
       <div className='list_image'>
         <div className='image_sec'>
           <img src='/images/post_img.png' />
         </div>
-        <div className='image_name'>Bharat</div>
+        <div className='image_name'>{props.username}</div>
       </div>
-      <div className='list_info'>
-        This is an example of a comment. You can create as many comments like
-        this one or sub comments as you like and manage all of your content
-        inside your Account.
-      </div>
+      <div className='list_info'>{props.body}</div>
       {/* <input type='button' defaultValue='Reply' className='black_btn' />
               <div className='cmnt_div'>
                 <input
