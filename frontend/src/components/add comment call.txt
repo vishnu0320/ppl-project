@@ -1,0 +1,15 @@
+
+
+formdata dont accpet object ????
+
+find and modify => return only finded document
+
+
+====================================================
+
+
+alert box close button dont show at single post
+category
+like,==> reply
+edit profile
+dp

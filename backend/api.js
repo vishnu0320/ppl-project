@@ -36,6 +36,25 @@ module.exports = {
         { $push: { comments: { body: data.body, userID: data.userID } } },
         (err, data) => {
           if (err) reject('error');
+          else {
+            console.log('coment => ', data);
+            resolve({ msg: 'save', post: data });
+          }
+        }
+      );
+    });
+  },
+
+  addLike: (data) => {
+    return new Promise((resolve, reject) => {
+      //find bost and update
+      console.log('input', data);
+      postModel.findOneAndUpdate(
+        { _id: data.postID },
+        { $addToSet: { like: data.userID } },
+        (err, data) => {
+          console.log('data= output=== -> ', data);
+          if (err) reject('error');
           else resolve({ msg: 'save', post: data });
         }
       );

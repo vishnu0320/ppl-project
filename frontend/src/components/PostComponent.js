@@ -17,12 +17,7 @@ const PostComponent = (props) => {
   return (
     <div className='contnt_2'>
       <div className='div_a'>
-        <Link
-          to={{
-            pathname: `/post/${props._id}`,
-            state: { post: props },
-          }}
-        >
+        <Link to={`/post/${props._id}`}>
           <div className='div_title'>{title}</div>
           <div className='btm_rgt'>
             <div className='btm_arc'>{category}</div>
@@ -61,12 +56,7 @@ const PostComponent = (props) => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to={{
-                    pathname: `/post/${props._id}`,
-                    state: { post: props },
-                  }}
-                >
+                <Link to={`/post/${props._id}`}>
                   <span className='btn_icon'>
                     <img src='images/icon_004.png' alt='share' />
                   </span>
@@ -74,7 +64,7 @@ const PostComponent = (props) => {
                 </Link>
               </li>
               <li>
-                <Link to='#'>
+                <Link onClick={(e) => props.handleLike(e, props._id)}>
                   <span className='btn_icon'>
                     <img src='images/icon_003.png' alt='share' />
                   </span>

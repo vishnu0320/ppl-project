@@ -10,8 +10,8 @@ import Header from './components/Header';
 import Welcome from './components/WelcomeContent';
 import Home from './components/Home';
 import SinglePost from './components/SinglePost';
-import ForgotPassword from './components/ForgotPassword';
-import ResetPassword from './components/ResetPassword';
+//import ForgotPassword from './components/ForgotPassword';
+//import ResetPassword from './components/ResetPassword';
 import Timeline from './components/Timeline';
 import PostUpload from './components/PostUpload';
 
@@ -63,9 +63,9 @@ function App() {
 
             <Route path='/post/:id' component={SinglePost} />
 
-            {/* <Route path='/timeline'>
+            <Route path='/timeline'>
               <Timeline />
-            </Route> */}
+            </Route>
 
             <Route path='/upload-post'>
               <PostUpload />

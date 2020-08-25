@@ -1,21 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
+import Axios from 'axios';
 
 import PostComponent from './PostComponent';
+import ProfileCard from './ProfileCard';
+import Popup from './Popup';
 
 const Home = () => {
+  const history = useHistory();
   const [allPost, setAllPost] = useState([]);
   const [showFeatured, setShowFeatured] = useState(false);
+  const [islike, setIsLike] = useState(false);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:9999/getAllPost')
-      .then((res) => setAllPost(res.data));
+    const isLogin = localStorage.getItem('isLogin');
+    if (!isLogin) {
+      history.push('/');
+    }
   }, []);
+
+  useEffect(() => {
+    Axios.get('http://localhost:9999/getAllPost').then((res) =>
+      setAllPost(res.data)
+    );
+    setIsLike(false);
+  }, [islike]);
+
+  const handleLike = async (e, id) => {
+    console.log('id', id);
+    const user = JSON.parse(localStorage.getItem('isLogin'));
+
+    try {
+      const result = await Axios.post('http://localhost:9999/likePost', {
+        userID: user._id,
+        postID: id,
+      });
+      setIsLike(true);
+    } catch (err) {
+      console.log('err');
+    }
+  };
 
   return (
     <div className='content'>
+      {/* <Popup header='Add Category'></Popup> */}
       <div className='content_rgt'>
         <div className='rght_btn'>
           <span className='rght_btn_icon'>
@@ -26,15 +54,16 @@ const Home = () => {
           </span>
           <Link to='/upload-post'>Upload Post</Link>
         </div>
-        <div className='rght_btn'>
+        {/* <div className='rght_btn'>
           <span className='rght_btn_icon'>
             <img src='images/btn_icona.png' alt='up' />
           </span>
           <span className='btn_sep'>
             <img src='images/btn_sep.png' alt='sep' />
           </span>
-          <Link to='#'>Invite Friends</Link>
-        </div>
+          <div>Add Categories</div>
+        </div> */}
+
         <div className='rght_cate'>
           <div className='rght_cate_hd' id='rght_cat_bg'>
             Categories
@@ -140,8 +169,9 @@ const Home = () => {
               </li>
             </ul>
           </div> */}
-          <div className='post_div'>
-            <div className='post_list'>
+          <ProfileCard />
+          {/* <div className='post_div'> */}
+          {/* <div className='post_list'>
               <ul>
                 <li>
                   <Link to='#'>
@@ -184,12 +214,14 @@ const Home = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
-            {/* <div className='post_txt'>4 New Post Updates</div> */}
-          </div>
+            </div> */}
+          {/* <div className='post_txt'>4 New Post Updates</div> */}
+          {/* </div> */}
         </div>
         {allPost?.length > 0 ? (
-          allPost.map((element) => <PostComponent {...element} />)
+          allPost.map((element) => (
+            <PostComponent {...element} handleLike={handleLike} />
+          ))
         ) : (
           <h1>No Post</h1>
         )}

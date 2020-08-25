@@ -10,7 +10,13 @@ app.use(express.static('uploads'));
 mongoose.set('useFindAndModify', false);
 // app.use('/static', express.static(path.join(__dirname, 'uploads')));
 const userModel = require('./Schema/UserSchema');
-const { findUserByEmail, addUser, addPost, addComment } = require('./api');
+const {
+  findUserByEmail,
+  addUser,
+  addPost,
+  addComment,
+  addLike,
+} = require('./api');
 const postModel = require('./Schema/PostSchema');
 
 const storage = multer.diskStorage({
@@ -89,6 +95,19 @@ app.post('/login', async (req, res) => {
 
 app.post('/addComment', (req, res) => {
   addComment(req.body)
+    .then((result) => {
+      if (result.msg === 'save') {
+        console.log('save', result.post);
+        res.send(result.post);
+      }
+    })
+    .catch((err) => {
+      res.send('error');
+    });
+});
+
+app.post('/likePost', (req, res) => {
+  addLike(req.body)
     .then((result) => {
       if (result.msg === 'save') {
         console.log('save', result.post);

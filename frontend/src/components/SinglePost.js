@@ -6,7 +6,6 @@ import Comment from './CommentComponent';
 import Axios from 'axios';
 
 const SinglePost = (props) => {
-  const { post } = props.location.state;
   const [PostData, setPostData] = useState({});
   const [isComment, setIsComment] = useState(false);
 
